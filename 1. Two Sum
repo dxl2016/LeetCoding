@@ -1,0 +1,14 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        temp = {}
+        for idx, val in enumerate(nums):
+            rem = target - val
+            if rem not in temp:
+                temp[val] = idx
+            else:
+                return [temp[rem], idx]
