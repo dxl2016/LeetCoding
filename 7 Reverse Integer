@@ -4,7 +4,6 @@ class Solution(object):
         :type x: int
         :rtype: int
         """
-
         if x < 0:
             sign = -1
         else:
