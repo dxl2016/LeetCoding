@@ -1,0 +1,23 @@
+class Solution(object):
+    def numSqCalc(self, num):
+        SqSum = 0
+        while(num):
+            rem = num % 10
+            SqSum += rem * rem
+            num = int(num / 10)
+        return SqSum
+        
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        while(True):
+            n = self.numSqCalc(n)    
+            if n == 1:
+                return True
+            elif n == 4:
+                return False
+            else:
+                continue
+                
