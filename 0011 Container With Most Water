@@ -1,0 +1,19 @@
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        #Approach 2: Two Pointer Approach
+        maxArea = 0
+        lPt = 0
+        rPt = len(height) - 1
+        while(abs(rPt - lPt)):
+            currArea = (rPt - lPt) * min(height[lPt], height[rPt])
+            if currArea >= maxArea:
+                maxArea = currArea
+            if height[lPt] <= height[rPt]:
+                lPt += 1
+            else:
+                rPt -= 1
+        return maxArea
