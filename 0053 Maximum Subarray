@@ -1,0 +1,34 @@
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def subFunc(arr, lPt, mididx, rPt):
+            temp = 0; curr_l_sum = -float("inf")
+            for i in range(mididx, lPt-1, -1):
+                temp += arr[i]
+                if temp >= curr_l_sum:
+                    curr_l_sum = temp
+            
+            temp = 0; curr_r_sum = -float("inf")
+            for i in range(mididx+1, rPt+1):
+                temp += arr[i]
+                if temp >= curr_r_sum:
+                    curr_r_sum = temp
+            
+            return curr_l_sum + curr_r_sum
+        
+        def recFunc(arr, lPt, rPt):
+            if lPt == rPt:
+                return arr[lPt]
+            
+            mididx = int((lPt + rPt)//2)
+            return max(max(recFunc(arr, lPt, mididx), 
+                           recFunc(arr, mididx+1, rPt)), subFunc(arr, lPt, mididx, rPt))
+            
+        
+        n = len(nums)
+        return recFunc(nums, 0, n-1)
+        
+        
